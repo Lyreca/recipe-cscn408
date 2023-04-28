@@ -1,0 +1,23 @@
+{
+  "name": "recipe-cscn408",
+  "version": "1.0.0",
+  "description": "Recipe app for CSCN 408",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lyreca/recipe-cscn408.git"
+  },
+  "author": "Frans Santoso, Joann Yang, Jacob Lohman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lyreca/recipe-cscn408/issues"
+  },
+  "homepage": "https://github.com/Lyreca/recipe-cscn408#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}

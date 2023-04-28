@@ -4,18 +4,50 @@
 	<meta charset="utf-8">
 	<title>Recipe App - CSCN 408</title>
 	<link rel="stylesheet" href="css/styles.css">
+	<script src="js/api.js"></script>
+	<script src="js/displayTable.js"></script>
+	<script src="js/displayIngredients.js"></script>
 </head>
+
+
+
 <body>
 	<header>
 		<img src="img/logo.png" alt="Logo">
         <h1>Recipe App</h1>
 	</header>
 
-	<main>
+	<body>
 		<h1>Welcome to myRecipes!</h1>
 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis sodales velit.</p>
-	</main>
+        <button onclick=logJSONData()>Log JSON Data</button>
+		<button onclick=searchRecipeByName()>Search Recipe Name</button>
+		<input id="searchQuery">
 
-	<script src="js/main.js"></script>
+
+		<table id="searchResults">
+			<!-- Search results will be displayed here -->
+
+		</table>
+
+		<div id="ingredients">
+			<!-- Ingredient selection will be displayed here -->
+			<div id="ingredientCategories">
+				
+			</div>
+
+			<div id="ingredientSelection">
+
+			</div>
+			
+			<script>
+				displayIngredients();
+			</script>
+		</div>
+    </body>
+
+	
+
+	
 </body>
 </html>
