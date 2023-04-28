@@ -40,6 +40,9 @@ main {
 	flex-wrap: wrap;
 	padding: 1rem;
 	margin: 10px 0 10px 0;
+	overflow-y: scroll;
+	height: 200px;
+	align-content: flex-start;
 }
 
 .selection {
