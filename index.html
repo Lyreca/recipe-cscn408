@@ -7,6 +7,7 @@
 	<script src="js/api.js"></script>
 	<script src="js/displayTable.js"></script>
 	<script src="js/displayIngredients.js"></script>
+	<script src="js/filterIngredients.js"></script>	
 </head>
 
 
@@ -32,6 +33,7 @@
 		<div id="ingredients">
 			<div id="search">
 				<input id="searchBarIngredients" placeholder="Filter ingredients here...">
+				
 			</div>
 
 			<div id="ingredientsUnselected" class="selectionBox">
@@ -42,13 +44,13 @@
 			
 			</div>
 
-			<script>
-				displayIngredients();
-			</script>
+
 		</div>
 
 		<script>
+			displayIngredients();
 			highlightIngredients();
+			filterIngredients();
 		</script>
     </body>
 
