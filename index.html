@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<title>Recipe App - CSCN 408</title>
 	<link rel="stylesheet" href="css/styles.css">
-	<script src="js/api.js"></script>
+	<script src="js/api.js" async></script>
 	<script src="js/displayTable.js"></script>
 	<script src="js/displayIngredients.js"></script>
 	<script src="js/filterIngredients.js"></script>
@@ -18,19 +18,14 @@
         <h1>Recipe App</h1>
 	</header>
 
-	<body>
+	<main>
 		<h1>Welcome to myRecipes!</h1>
-        <button onclick=logJSONData()>Log JSON Data</button>
+        <!-- <button onclick=displayIngredients()>Log JSON Data</button> -->
 		<button onclick=searchRecipeByName()>Search Recipe Name</button>
 		<input id="searchQuery">
 
-
-		<table id="searchResults">
-			<!-- Search results will be displayed here -->
-
-		</table>
-
 		<div id="ingredients">
+			
 			<div id="search">
 				<input id="searchBarIngredients" placeholder="Filter ingredients here...">
 				
@@ -43,19 +38,17 @@
 			<div id="ingredientsSelected" class="selectionBox">
 			
 			</div>
-
-
+			
+			<button>Search Recipe By Ingredients</button>
 		</div>
 
-		<script>
-			displayIngredients();
-			highlightIngredients();
-			filterIngredients();
-		</script>
-    </body>
+		<table id="searchResults">
+			<!-- Search results will be displayed here -->
 
-	
+		</table>
+    </main>
 
 	
 </body>
 </html>
+
