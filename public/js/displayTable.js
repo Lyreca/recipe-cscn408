@@ -32,6 +32,11 @@ function joinNames(data) {
 function displayTable(data) {
     var table = document.getElementById("searchResults");
     
+    // -- CLEAR PREVIOUS SEARCH RESULTS --
+    while (table.firstChild) {
+        table.removeChild(table.firstChild);
+    }
+    
     // -- CREATE TABLE HEAD SECTION --
     let thead = table.createTHead();
     let row = thead.insertRow();
