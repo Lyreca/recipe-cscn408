@@ -5,7 +5,7 @@ const app = express();
 const port = 3000;
 
 app.get('/', (req, res) => {
-    res.sendFile('/index.html', {root: __dirname}); 
+    res.sendFile('/public/index.html', {root: __dirname}); 
   });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
