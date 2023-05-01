@@ -4,40 +4,48 @@
 	<meta charset="utf-8">
 	<title>Recipe App - CSCN 408</title>
 	<link rel="stylesheet" href="css/styles.css">
-	<script src="js/api.js"></script>
+	<script src="js/api.js" async></script>
 	<script src="js/displayTable.js"></script>
 	<script src="js/displayIngredients.js"></script>
+	<script src="js/filterIngredients.js"></script>
 </head>
 
 
 
 <body>
 	<header>
-		<img src="img/logo.png" alt="Logo">
-        <h1>Recipe App</h1>
+		<img src="images/myRecipes.png" alt="Logo">
 	</header>
 
-	<body>
-		<h1>Welcome to myRecipes!</h1>
-        <button onclick=logJSONData()>Log JSON Data</button>
+	<main>
 		<button onclick=searchRecipeByName()>Search Recipe Name</button>
 		<input id="searchQuery">
 
+		<div id="ingredients">
+			
+			
+			<div id="search">
+				<button onclick=searchRecipeByIngredients()>Search Recipe By Ingredients</button>
+				<input id="searchBarIngredients" placeholder="Filter ingredients here...">
+				
+			</div>
+			
+			<div id="ingredientsUnselected" class="selectionBox">
+
+			</div>
+			
+			<div id="ingredientsSelected" class="selectionBox">
+			
+			</div>
+		</div>
 
 		<table id="searchResults">
 			<!-- Search results will be displayed here -->
 
 		</table>
-
-		<div id="ingredients">
-			<script>
-				displayIngredients();
-			</script>
-		</div>
-    </body>
-
-	
+    </main>
 
 	
 </body>
 </html>
+
