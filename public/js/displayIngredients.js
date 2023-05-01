@@ -10,10 +10,16 @@ function readCSVData(data) {
     rows.slice(1, -1).forEach(row => {
         row = row.slice(0,-1);
         const columns = row.split(";");
+
+        if(ingredientList.map(ingredient => ingredient.id).includes(columns[1])) {
+            return;
+        }
+
         ingredientList.push({name: columns[0], id: columns[1]});
     });
 
     ingredientList = sortIngredientList(ingredientList);
+    console.log(ingredientList.length);
 }
 
 function displayIngredients() {
