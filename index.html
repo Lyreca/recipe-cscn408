@@ -14,19 +14,18 @@
 
 <body>
 	<header>
-		<img src="img/logo.png" alt="Logo">
-        <h1>Recipe App</h1>
+		<img src="images/myRecipes.png" alt="Logo">
 	</header>
 
 	<main>
-		<h1>Welcome to myRecipes!</h1>
-        <!-- <button onclick=displayIngredients()>Log JSON Data</button> -->
 		<button onclick=searchRecipeByName()>Search Recipe Name</button>
 		<input id="searchQuery">
 
 		<div id="ingredients">
 			
+			
 			<div id="search">
+				<button onclick=searchRecipeByIngredients()>Search Recipe By Ingredients</button>
 				<input id="searchBarIngredients" placeholder="Filter ingredients here...">
 				
 			</div>
@@ -38,8 +37,6 @@
 			<div id="ingredientsSelected" class="selectionBox">
 			
 			</div>
-			
-			<button>Search Recipe By Ingredients</button>
 		</div>
 
 		<table id="searchResults">
