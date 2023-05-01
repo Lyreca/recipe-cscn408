@@ -20,14 +20,17 @@
 	<main>
 
 		<div id="ingredients">
-			<button onclick=searchRecipeByName()>Search Recipe Name</button>
-			<input id="searchQuery" placeholder="Enter recipe here...">
-			<br/><br/>
+			<div class="search">
+				<button onclick=searchRecipeByName()>Search Recipe Name</button>
+				<input id="searchQuery" placeholder="Enter recipe here...">
+				<p id="searchByNameText"></p>
+			</div>
 	
 			
-			<div id="search">
+			<div class="search">
 				<button onclick=searchRecipeByIngredients()>Search Recipe By Ingredients</button>
 				<input id="searchBarIngredients" placeholder="Filter ingredients here...">
+				<p id="searchByIngredientsText"></p>
 				
 			</div>
 			
@@ -39,10 +42,9 @@
 			
 			</div>
 
-			<table id="searchResults">
-				<!-- Search results will be displayed here -->
-	
-			</table>
+			<div id="searchResultsDiv">
+
+			</div>
 		</div>
 
 		
