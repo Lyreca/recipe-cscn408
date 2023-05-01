@@ -28,11 +28,13 @@ grabCSVData()
     
 async function searchRecipeByName() {
     let searchQuery = document.getElementById("searchQuery").value;
-    let searchURL = `https://api.spoonacular.com/recipes/complexSearch?query=${searchQuery}`;
+    let numberOfResults = 10;
+    searchQuery = searchQuery.trim();
+    searchQuery = searchQuery.replace(/[^a-zA-Z0-9_-]+/g, "-");
+    let searchURL = `https://api.spoonacular.com/recipes/complexSearch?query=${searchQuery}&number=${numberOfResults}`;
     fetch(searchURL, {headers: {"x-api-key": apiKey}})
         .then(response => response.json())
-        .then(data => displayTable(data.results));
-
+        .then(data => displayTableByName(data.results));
     
 }
 
@@ -53,6 +55,6 @@ async function searchRecipeByIngredients() {
     fetch(searchURL, {headers: {"x-api-key": apiKey}})
         .then(response => response.json())
         .then(data => {
-            displayTable(data);
+            displayTableByIngredients(data);
         });
 }
