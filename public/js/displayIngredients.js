@@ -1,5 +1,10 @@
 var ingredientList = []
 
+function sortIngredientList(list) {
+    list.sort((x, y) => (x.id < y.id) ? 1 : (x.price > y.price) ? -1 : 0);
+    return list;
+}
+
 function readCSVData(data) {
     const rows = data.split("\n");
     rows.slice(1, -1).forEach(row => {
@@ -8,8 +13,7 @@ function readCSVData(data) {
         ingredientList.push({name: columns[0], id: columns[1]});
     });
 
-    ingredientList = ingredientList.sort(
-        (x, y) => (x.id < y.id) ? 1 : (x.price > y.price) ? -1 : 0);
+    ingredientList = sortIngredientList(ingredientList);
 }
 
 function displayIngredients() {
