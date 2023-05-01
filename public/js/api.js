@@ -35,3 +35,10 @@ async function searchRecipeByName() {
 
     
 }
+
+async function searchReciepeByIngredients() {
+    let searchURL = `https://api.spoonacular.com/recipes/complexSearch?query=${searchQuery}`;
+    fetch(searchURL, {headers: {"x-api-key": apiKey}})
+        .then(response => response.json())
+        .then(data => displayTable(data.results));
+}
