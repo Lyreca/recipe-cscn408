@@ -1,28 +1,5 @@
 var onlyAlphaNumericRegex = /[^a-zA-Z0-9_-]+/g;
 
-function generateTableHead(table, data) {
-    let thead = table.createTHead();
-    let row = thead.insertRow();
-    for (let key of data) {
-      let th = document.createElement("th");
-      let text = document.createTextNode(key);
-      th.appendChild(text);
-      row.appendChild(th);
-    }
-  }
-  
-function generateTable(table, data) {
-    for (let element of data) {
-      let row = table.insertRow();
-      for (key in element) {
-        let cell = row.insertCell();
-        let text = document.createTextNode(element[key]);
-        cell.appendChild(text);
-      }
-    }
-  }
-
-
 function joinNames(data) {
     let names = "";
     data.forEach(ingredient => {
@@ -32,71 +9,81 @@ function joinNames(data) {
 }
 
 function displayTableByName(data) {
-  var table = document.getElementById("searchResults");
+    var div = document.getElementById("searchResultsDiv");
+    var table = document.createElement("table");
 
-  // -- CLEAR PREVIOUS SEARCH RESULTS --
-  while (table.firstChild) {
-      table.removeChild(table.firstChild);
+    // -- CLEAR PREVIOUS SEARCH RESULTS --
+    while (div.firstChild) {
+        div.removeChild(div.firstChild);
+    }
+    
+    // -- CREATE TABLE HEAD SECTION --
+    let thead = table.createTHead();
+    let row = thead.insertRow();
+
+    // no. of search result
+    let th = document.createElement("th");
+    let text = document.createTextNode("No.");
+    th.appendChild(text);
+    row.appendChild(th);
+
+    // image
+    th = document.createElement("th");
+    text = document.createTextNode("Image");
+    th.appendChild(text);
+    row.appendChild(th);
+
+    // title
+    th = document.createElement("th");
+    text = document.createTextNode("Title");
+    th.appendChild(text);
+    row.appendChild(th);
+
+    // -- CREATE TABLE BODY SECTION --
+    for (let i = 0; i < data.length; i++) {
+        let row = table.insertRow();
+        let cell = row.insertCell();
+        let text = document.createTextNode(i + 1);
+        cell.appendChild(text);
+
+        cell = row.insertCell();
+        let query = data[i].title.replace(onlyAlphaNumericRegex, "-");
+        query = query.toLowerCase();
+        console.log(query);
+        let url = `https://spoonacular.com/recipes/${query}-${data[i].id}`;
+
+        let a = document.createElement("a");
+        a.href = url;
+        a.target = "_blank";
+
+        let img = document.createElement("img");
+        img.src = data[i].image;
+
+        a.appendChild(img);
+        cell.appendChild(a);
+
+        cell = row.insertCell();
+        let a2 = document.createElement("a");
+        a2.href = url;
+        a2.target = "_blank";
+        text = document.createTextNode(data[i].title);
+        a2.appendChild(text);
+        cell.appendChild(a2);
   }
-  
-  // -- CREATE TABLE HEAD SECTION --
-  let thead = table.createTHead();
-  let row = thead.insertRow();
 
-  // no. of search result
-  let th = document.createElement("th");
-  let text = document.createTextNode("No.");
-  th.appendChild(text);
-  row.appendChild(th);
+  div.appendChild(table);
 
-  // image
-  th = document.createElement("th");
-  text = document.createTextNode("Image");
-  th.appendChild(text);
-  row.appendChild(th);
-
-  // title
-  th = document.createElement("th");
-  text = document.createTextNode("Title");
-  th.appendChild(text);
-  row.appendChild(th);
-
-  // -- CREATE TABLE BODY SECTION --
-  for (let i = 0; i < data.length; i++) {
-      let row = table.insertRow();
-      let cell = row.insertCell();
-      let text = document.createTextNode(i + 1);
-      cell.appendChild(text);
-
-      cell = row.insertCell();
-
-      let query = data[i].title.replace(onlyAlphaNumericRegex, "-");
-      query = query.toLowerCase();
-      console.log(query);
-      let url = `https://spoonacular.com/recipes/${query}-${data[i].id}`;
-
-      let a = document.createElement("a");
-      a.href = url;
-      a.target = "_blank";
-
-      let img = document.createElement("img");
-      img.src = data[i].image;
-
-      a.appendChild(img);
-      cell.appendChild(a);
-
-      cell = row.insertCell();
-      text = document.createTextNode(data[i].title);
-      cell.appendChild(text);
-  }
+  let successText = document.getElementById("searchByNameText");
+  successText.textContent = `Search Results: ${data.length} Recipes Found!`;
 }
 
 function displayTableByIngredients(data) {
-    var table = document.getElementById("searchResults");
+    var div = document.getElementById("searchResultsDiv");
+    var table = document.createElement("table");
 
     // -- CLEAR PREVIOUS SEARCH RESULTS --
-    while (table.firstChild) {
-        table.removeChild(table.firstChild);
+    while (div.firstChild) {
+      div.removeChild(div.firstChild);
     }
     
     // -- CREATE TABLE HEAD SECTION --
@@ -163,8 +150,12 @@ function displayTableByIngredients(data) {
         cell.appendChild(a);
 
         cell = row.insertCell();
+        let a2 = document.createElement("a");
+        a2.href = url;
+        a2.target = "_blank";
         text = document.createTextNode(data[i].title);
-        cell.appendChild(text);
+        a2.appendChild(text);
+        cell.appendChild(a2);
 
         cell = row.insertCell();
         console.log(data[i].usedIngredients)
@@ -179,4 +170,9 @@ function displayTableByIngredients(data) {
         text = document.createTextNode(joinNames(data[i].unusedIngredients));
         cell.appendChild(text);
     }
+
+    div.appendChild(table);
+
+    let successText = document.getElementById("searchByIngredientsText");
+    successText.textContent = `Search Results: ${data.length} Recipes Found!`;
 }
