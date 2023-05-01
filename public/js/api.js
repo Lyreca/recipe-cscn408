@@ -58,3 +58,23 @@ async function searchRecipeByIngredients() {
             displayTableByIngredients(data);
         });
 }
+
+function displayLoadingBox() {
+    let searchResultsDiv = document.getElementById("searchResultsDiv");
+
+    let loadingBox = document.createElement("div");
+    loadingBox.className = "loadingBox";
+
+    let loadingText = document.createElement("p");
+    loadingText.textContent = "Loading...";
+    loadingText.className = "loadingText";
+
+    loadingBox.appendChild(loadingText);
+    searchResultsDiv.appendChild(loadingBox);
+}
+
+function removeLoadingBox() {
+    let searchResultsDiv = document.getElementById("searchResultsDiv");
+    let loadingBox = document.querySelector(".loadingBox");
+    searchResultsDiv.removeChild(loadingBox);
+}
