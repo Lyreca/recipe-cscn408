@@ -12,19 +12,26 @@ async function logJSONData() {
         .then(data => console.log(data));
 }
 
-async function grabCSVData() {
+// Reading CSV data
 
-    let response = await fetch("https://spoonacular.com/application/frontend/downloads/ingredients.csv");
-    let data = await response.text();
-    return data;
+document.addEventListener('DOMContentLoaded', function() {
+    let fetchIngredientsResults = document.getElementById("ingredientsUnselected");
+    displayLoadingBox(fetchIngredientsResults);
 
-}
+    let searchURL = `https://spoonacular.com/application/frontend/downloads/ingredients.csv`;
 
-grabCSVData()
-    .then(data => readCSVData(data))
-    .then(() => displayIngredients())
-    .then(() => highlightIngredients())
-    .then(() => filterIngredients());
+    fetch(searchURL)
+        .then(response => response.text())
+        .then(data => readCSVData(data))
+        .then(() => {
+            removeLoadingBox(fetchIngredientsResults);
+            displayIngredients();
+        })
+        .then(() => highlightIngredients())
+        .then(() => filterIngredients());
+ }, false);
+
+
     
 async function searchRecipeByName() {
     let searchQuery = document.getElementById("searchQuery").value;
@@ -35,13 +42,13 @@ async function searchRecipeByName() {
     // Loading Box
     let searchResultsDiv = document.getElementById("searchResultsDiv");
     clearDiv(searchResultsDiv);
-    displayLoadingBox();
+    displayLoadingBox(searchResultsDiv);
 
     let searchURL = `https://api.spoonacular.com/recipes/complexSearch?query=${searchQuery}&number=${numberOfResults}`;
     fetch(searchURL, {headers: {"x-api-key": apiKey}})
         .then(response => response.json())
         .then(data => {
-            removeLoadingBox();
+            removeLoadingBox(searchResultsDiv);
             displayTableByName(data.results)
         });
     
@@ -62,20 +69,18 @@ async function searchRecipeByIngredients() {
     // Loading Box
     let searchResultsDiv = document.getElementById("searchResultsDiv");
     clearDiv(searchResultsDiv);
-    displayLoadingBox();
+    displayLoadingBox(searchResultsDiv);
     
     let searchURL = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredientQueryStr}&number=${numberOfResults}&ranking=1`;
     fetch(searchURL, {headers: {"x-api-key": apiKey}})
         .then(response => response.json())
         .then(data => {
-            removeLoadingBox();
+            removeLoadingBox(searchResultsDiv);
             displayTableByIngredients(data);
         });
 }
 
-function displayLoadingBox() {
-    let searchResultsDiv = document.getElementById("searchResultsDiv");
-
+function displayLoadingBox(div) {
     let loadingBox = document.createElement("div");
     loadingBox.className = "loadingBox";
 
@@ -84,13 +89,12 @@ function displayLoadingBox() {
     loadingText.className = "loadingText";
 
     loadingBox.appendChild(loadingText);
-    searchResultsDiv.appendChild(loadingBox);
+    div.appendChild(loadingBox);
 }
 
-function removeLoadingBox() {
-    let searchResultsDiv = document.getElementById("searchResultsDiv");
+function removeLoadingBox(div) {
     let loadingBox = document.querySelector(".loadingBox");
-    searchResultsDiv.removeChild(loadingBox);
+    div.removeChild(loadingBox);
 }
 
 function clearDiv(div) {
