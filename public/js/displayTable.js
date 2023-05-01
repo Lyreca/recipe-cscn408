@@ -11,11 +11,6 @@ function joinNames(data) {
 function displayTableByName(data) {
     var div = document.getElementById("searchResultsDiv");
     var table = document.createElement("table");
-
-    // -- CLEAR PREVIOUS SEARCH RESULTS --
-    while (div.firstChild) {
-        div.removeChild(div.firstChild);
-    }
     
     // -- CREATE TABLE HEAD SECTION --
     let thead = table.createTHead();
@@ -80,11 +75,6 @@ function displayTableByName(data) {
 function displayTableByIngredients(data) {
     var div = document.getElementById("searchResultsDiv");
     var table = document.createElement("table");
-
-    // -- CLEAR PREVIOUS SEARCH RESULTS --
-    while (div.firstChild) {
-      div.removeChild(div.firstChild);
-    }
     
     // -- CREATE TABLE HEAD SECTION --
     let thead = table.createTHead();

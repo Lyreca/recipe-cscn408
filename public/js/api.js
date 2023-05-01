@@ -31,10 +31,19 @@ async function searchRecipeByName() {
     let numberOfResults = 10;
     searchQuery = searchQuery.trim();
     searchQuery = searchQuery.replace(/[^a-zA-Z0-9_-]+/g, "-");
+
+    // Loading Box
+    let searchResultsDiv = document.getElementById("searchResultsDiv");
+    clearDiv(searchResultsDiv);
+    displayLoadingBox();
+
     let searchURL = `https://api.spoonacular.com/recipes/complexSearch?query=${searchQuery}&number=${numberOfResults}`;
     fetch(searchURL, {headers: {"x-api-key": apiKey}})
         .then(response => response.json())
-        .then(data => displayTableByName(data.results));
+        .then(data => {
+            removeLoadingBox();
+            displayTableByName(data.results)
+        });
     
 }
 
@@ -50,11 +59,16 @@ async function searchRecipeByIngredients() {
 
     ingredientQueryStr = ingredientQueryStr.slice(0, -2);
 
-    console.log(ingredientQueryStr);
+    // Loading Box
+    let searchResultsDiv = document.getElementById("searchResultsDiv");
+    clearDiv(searchResultsDiv);
+    displayLoadingBox();
+    
     let searchURL = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredientQueryStr}&number=${numberOfResults}&ranking=1`;
     fetch(searchURL, {headers: {"x-api-key": apiKey}})
         .then(response => response.json())
         .then(data => {
+            removeLoadingBox();
             displayTableByIngredients(data);
         });
 }
@@ -77,4 +91,11 @@ function removeLoadingBox() {
     let searchResultsDiv = document.getElementById("searchResultsDiv");
     let loadingBox = document.querySelector(".loadingBox");
     searchResultsDiv.removeChild(loadingBox);
+}
+
+function clearDiv(div) {
+    // -- CLEAR PREVIOUS SEARCH RESULTS --
+    while (div.firstChild) {
+        div.removeChild(div.firstChild);
+    }
 }
