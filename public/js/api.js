@@ -36,9 +36,23 @@ async function searchRecipeByName() {
     
 }
 
-async function searchReciepeByIngredients() {
-    let searchURL = `https://api.spoonacular.com/recipes/complexSearch?query=${searchQuery}`;
+async function searchRecipeByIngredients() {
+    let ingredientsDivs = document.querySelectorAll(`div.selection.selected`);
+    let numberOfResults = 10;
+    let ingredientQueryStr = "";
+    ingredientsDivs.forEach(ingredient => {
+        ingredient.textContent.replace(" ", "-");
+        ingredientQueryStr += ingredient.textContent + ",+";
+        
+    });
+
+    ingredientQueryStr = ingredientQueryStr.slice(0, -2);
+
+    console.log(ingredientQueryStr);
+    let searchURL = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredientQueryStr}&number=${numberOfResults}&ranking=1`;
     fetch(searchURL, {headers: {"x-api-key": apiKey}})
         .then(response => response.json())
-        .then(data => displayTable(data.results));
+        .then(data => {
+            displayTable(data);
+        });
 }
