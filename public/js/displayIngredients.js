@@ -25,6 +25,9 @@ function readCSVData(data) {
         const columns = row.split(";");
         ingredientList.push({name: columns[0], id: columns[1]});
     });
+
+    ingredientList = ingredientList.sort(
+        (x, y) => (x.id < y.id) ? 1 : (x.price > y.price) ? -1 : 0);
 }
 
 function displayIngredients() {
@@ -53,6 +56,7 @@ function highlightIngredients() {
                     document.getElementById("ingredientsUnselected").removeChild(selection);
                     document.getElementById("ingredientsSelected").appendChild(selection);
                 }
+                filter();
             })
         }
     );
