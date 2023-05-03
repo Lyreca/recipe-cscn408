@@ -5,6 +5,7 @@ function joinNames(data) {
     data.forEach(ingredient => {
         names += ingredient.name + ", ";
     });
+    names = names.slice(0, -2);
     return names;
 }
 
@@ -127,17 +128,22 @@ function displayTableByIngredients(data) {
         cell.appendChild(a2);
 
         cell = row.insertCell();
-        console.log(data[i].usedIngredients)
+        let p = document.createElement("p");
         text = document.createTextNode(joinNames(data[i].usedIngredients));
-        cell.appendChild(text);
+        p.appendChild(text);
+        cell.appendChild(p);
 
         cell = row.insertCell();
+        p = document.createElement("p");
         text = document.createTextNode(joinNames(data[i].missedIngredients));
-        cell.appendChild(text);
+        p.appendChild(text);
+        cell.appendChild(p);
 
         cell = row.insertCell();
+        p = document.createElement("p");
         text = document.createTextNode(joinNames(data[i].unusedIngredients));
-        cell.appendChild(text);
+        p.appendChild(text);
+        cell.appendChild(p);
     }
 
     div.appendChild(table);
