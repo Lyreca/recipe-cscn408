@@ -16,12 +16,6 @@ function displayTableByName(data) {
     let thead = table.createTHead();
     let row = thead.insertRow();
 
-    // no. of search result
-    let th = document.createElement("th");
-    let text = document.createTextNode("No.");
-    th.appendChild(text);
-    row.appendChild(th);
-
     // image
     th = document.createElement("th");
     text = document.createTextNode("Image");
@@ -36,12 +30,9 @@ function displayTableByName(data) {
 
     // -- CREATE TABLE BODY SECTION --
     for (let i = 0; i < data.length; i++) {
-        let row = table.insertRow();
+        let row = table.insertRow();    
         let cell = row.insertCell();
-        let text = document.createTextNode(i + 1);
-        cell.appendChild(text);
 
-        cell = row.insertCell();
         let query = data[i].title.replace(onlyAlphaNumericRegex, "-");
         query = query.toLowerCase();
         console.log(query);
@@ -54,8 +45,7 @@ function displayTableByName(data) {
         let img = document.createElement("img");
         img.src = data[i].image;
 
-        a.appendChild(img);
-        cell.appendChild(a);
+        cell.appendChild(img);
 
         cell = row.insertCell();
         let a2 = document.createElement("a");
@@ -79,12 +69,6 @@ function displayTableByIngredients(data) {
     // -- CREATE TABLE HEAD SECTION --
     let thead = table.createTHead();
     let row = thead.insertRow();
-
-    // no. of search result
-    let th = document.createElement("th");
-    let text = document.createTextNode("No.");
-    th.appendChild(text);
-    row.appendChild(th);
 
     // image
     th = document.createElement("th");
@@ -120,10 +104,6 @@ function displayTableByIngredients(data) {
     for (let i = 0; i < data.length; i++) {
         let row = table.insertRow();
         let cell = row.insertCell();
-        let text = document.createTextNode(i + 1);
-        cell.appendChild(text);
-
-        cell = row.insertCell();
 
         let query = data[i].title.replace(onlyAlphaNumericRegex, "-");
         query = query.toLowerCase();
@@ -136,8 +116,7 @@ function displayTableByIngredients(data) {
         let img = document.createElement("img");
         img.src = data[i].image;
 
-        a.appendChild(img);
-        cell.appendChild(a);
+        cell.appendChild(img);
 
         cell = row.insertCell();
         let a2 = document.createElement("a");

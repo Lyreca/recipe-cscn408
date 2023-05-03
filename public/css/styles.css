@@ -78,6 +78,58 @@ input {
 	align-content: flex-start;
 }
 
+.resultsBox {
+		border: 2.5px solid #333;
+		border-radius: 5px;
+		background-color: #fffcf1;
+		padding: 1rem;
+		margin: 10px 0 10px 0;
+		height: auto;
+}
+
+.resultsBox a {
+	margin: 10px;
+	font-size: 1.1em;
+	color: #333;
+	text-decoration: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.resultsBox a:hover {
+	text-decoration: underline;
+	color: #8bc727;
+}
+
+.resultsBox th {
+	font-variant: small-caps;
+	text-decoration: underline;
+	font-size: 1.25em;
+	margin: 10px;	
+	justify-content: center;
+}
+
+.resultsBox img {
+	border: 1px solid #333;
+	border-radius: 5px;
+	height: 200px;
+	width: 200px;
+	object-fit: cover;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.resultsBox text {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
 .selection {
 	border: 0.5px solid #333;
 	border-radius: 5px;
