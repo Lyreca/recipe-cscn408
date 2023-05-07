@@ -85,13 +85,13 @@ function displayTableByIngredients(data) {
 
     // used ingredients
     th = document.createElement("th");
-    text = document.createTextNode("Used Ingredients");
+    text = document.createTextNode("Searched Ingredients");
     th.appendChild(text);
     row.appendChild(th);
 
     // missed ingredients
     th = document.createElement("th");
-    text = document.createTextNode("Missing Ingredients");
+    text = document.createTextNode("Required Ingredients");
     th.appendChild(text);
     row.appendChild(th);
 
